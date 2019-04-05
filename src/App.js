@@ -12,10 +12,14 @@ class App extends Component {
     this.state = {
       currentUsername: '',
       currentScreen: 'WhatIsYourUsernameScreen',
-      error: ''
+      error: '',
+      offline: false
     }
   }
-
+  componentDidMount() {
+    window.addEventListener('online', () => { this.setState({ offline: false }) })
+    window.addEventListener('offline', () => { this.setState({offline: true}) })
+  }
   onNickNameSubmit = (username) => {
     fetch(`${SERVER_URI}/users`, {
       method: 'POST',
@@ -32,19 +36,22 @@ class App extends Component {
       })
       .catch(error => console.error('error', error))
   }
-  componentDidCatch(error){
-    this.setState({error, currentScreen: 'error'})
+  componentDidCatch(error) {
+    this.setState({ error, currentScreen: 'error' })
   }
   render() {
-    switch(this.state.currentScreen) {
-      case "WhatIsYourUsernameScreen" : 
+    if(this.state.offline){
+      alert("You are offline, please connect to internet to continue")
+    }
+    switch (this.state.currentScreen) {
+      case "WhatIsYourUsernameScreen":
         return <NickNameScreen onSubmit={this.onNickNameSubmit} />
       case "ChatScreen":
         return <ChatScreen currentUsername={this.state.currentUsername} />
-      default :
-      return (
-        <div>{this.state.error}</div>
-      )
+      default:
+        return (
+          <div>{this.state.error}</div>
+        )
     }
   }
 }

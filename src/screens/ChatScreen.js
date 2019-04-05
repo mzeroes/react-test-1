@@ -5,7 +5,8 @@ import SendMessageForm from '../components/SendMessageForm'
 import TypingIndicator from '../components/TypingIndicator'
 import OnlineList from '../components/OnlineList'
 import { SERVER_URI, INSTANCE_LOCATER } from '../config';
-import { Grid } from 'semantic-ui-react';
+import { Grid, Card, Segment } from 'semantic-ui-react';
+import Title from '../components/Title';
 
 class ChatScreen extends Component {
   constructor(props) {
@@ -86,15 +87,19 @@ class ChatScreen extends Component {
     }
 
     return (
-      <div style={{ 
+      <Card
+       style={{ 
         overflow: 'hidden', 
         height: "100vh", 
         width: '100vw', 
-        padding: 20,
+        paddingBottom: 100,
+        borderRadius: 2,
         backgroundColor: '#eee'
         }}>
-        <Grid style={{height: '80%'}}>
+        <Card.Content>
+          <Grid style={{ height: '80%'}}>
           <Grid.Column width={"13"}>
+              <Segment tertiary>Messages</Segment>
               <MessageList
                 messages={this.state.messages}
                 style={styles.chatList}
@@ -106,13 +111,15 @@ class ChatScreen extends Component {
             />
           </Grid.Column>
         <Grid.Column width={"3"}>
+              <Segment tertiary>users</Segment>
             <OnlineList
               currentUser={this.state.currentUser}
               users={this.state.currentRoom.users}
             />
           </Grid.Column>
         </Grid>
-      </div>
+        </Card.Content>
+      </Card>
     )
   }
 }

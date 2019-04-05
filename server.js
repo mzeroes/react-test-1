@@ -3,11 +3,15 @@ const bodyParser = require('body-parser')
 const cors = require('cors')
 const Chatkit = require('@pusher/chatkit-server')
 
+require('dotenv').config()
+
+// console.log(JSON.stringify(process.env))
+
 const app = express()
 
 const chatkit = new Chatkit.default({
-  instanceLocator: 'v1:us1:e4044788-6361-43c9-ba0a-6b00c0045020',
-  key: 'c20b0bb1-6b6e-4c65-a7fd-2068efee7c82:13VHkTLL8vGHHtKj84PHZBn5ifbrGaWSXjbp+mW+pL0=',
+  instanceLocator: process.env.INSTANCE_LOCATER,
+  key: process.env.PRIVATE_KEY,
 })
 
 app.use(bodyParser.urlencoded({ extended: false }))
@@ -36,7 +40,7 @@ app.post('/authenticate', (req, res) => {
   res.status(authData.status).send(authData.body)
 })
 
-const PORT = 3001
+const PORT = process.env.PORT || 3001
 app.listen(PORT, err => {
   if (err) {
     console.error(err)

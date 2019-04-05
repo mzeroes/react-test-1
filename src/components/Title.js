@@ -1,8 +1,8 @@
 import React from 'react';
 
-const Title = () => (
+const Title = (props) => (
   <header className="App-header">
-    React Test-1
+    {props.title}
   </header>
 )
 

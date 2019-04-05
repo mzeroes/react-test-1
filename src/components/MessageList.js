@@ -27,10 +27,10 @@ class MessagesList extends Component {
             <AutoSizer>
               {({ height, width }) => (
                 <List
-                 scrollToIndex={this.props.messages.length-1}
+                 scrollToIndex={this.props.messages.length-2}
                   width={width}
                   height={height}
-                  rowHeight={50}
+                  rowHeight={40}
                   rowRenderer={this.renderRow}
                   rowCount={this.props.messages.length} 
                   />

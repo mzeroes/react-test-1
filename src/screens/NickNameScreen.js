@@ -27,7 +27,7 @@ class NickNameScreen extends Component {
   render() {
     return (
       <div className="App" >
-        <Title />
+        <Title title="React-Test-1"/>
         <Container style={{ width: '40%', padding: '20px' }}>
           <form onSubmit={this.onSubmit}>
             <div style={{
