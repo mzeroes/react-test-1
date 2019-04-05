@@ -1,6 +1,8 @@
-## REACT-TEST-1
+# REACT-TEST-1 : **CHAT APP**
 
-## **Chat app**
+![Heroku](https://heroku-badge.herokuapp.com/?app=fast-bastion-68939)
+
+# [🚀 Deployed Heroku Server](https://fast-bastion-68939.herokuapp.com/)
 
 Build a working chat app for multiple users with multiple users (many to many).
  
