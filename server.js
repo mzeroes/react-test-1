@@ -2,6 +2,7 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const cors = require('cors')
 const Chatkit = require('@pusher/chatkit-server')
+const path = require('path');
 
 require('dotenv').config()
 
@@ -39,6 +40,12 @@ app.post('/authenticate', (req, res) => {
   const authData = chatkit.authenticate({ userId: req.query.user_id })
   res.status(authData.status).send(authData.body)
 })
+
+app.use(express.static(path.join(__dirname, 'build')));
+
+app.get('/', function (req, res) {
+  res.sendFile(path.join(__dirname, 'build', 'index.html'));
+});
 
 const PORT = process.env.PORT || 3001
 app.listen(PORT, err => {
